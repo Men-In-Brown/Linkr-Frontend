@@ -1,9 +1,6 @@
 ---
 layout: page
-title: About Me
-permalink: /about/
+title: My Account
+permalink: /account/
 ---
-
-A Fastpages clone, for CSA - Tirth Thakkar & Haseeb Beg
-
 
