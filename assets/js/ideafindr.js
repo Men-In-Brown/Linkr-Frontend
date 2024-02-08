@@ -1,28 +1,60 @@
-// Sample JSON data with ideas
-const ideas = [
+window.onload = function() {
+    const apiUrl = "https://linkr.stu.nighthawkcodingsociety.com/api/ideas";
+  
+    // Assuming the API returns a JSON array with the provided ideas data
+    fetch(apiUrl)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then(data => {
+        const ideas = data;
+        console.log("Ideas:", ideas);
+        // Now you can use the 'ideas' constant in your code
+      })
+      .catch(error => {
+        console.error("Fetch error:", error);
+      });
+};
+
+// Delete and Ctrl+H "exampleIdeas" with "ideas" when the API is up.
+const exampleIdeas = [
     { name: "Idea 1", description: "Description for Idea 1" },
     { name: "Idea 2", description: "Description for Idea 2" },
     { name: "Idea 3", description: "Description for Idea 3" },
-    { name: "Idea 4", description: "Description for Idea 3" },
-    { name: "Idea 5", description: "Description for Idea 3" },
-    { name: "Idea 6", description: "Description for Idea 3" },
-    { name: "Idea 7", description: "Description for Idea 3" },
-    { name: "Idea 8", description: "Description for Idea 3" },
-    { name: "Idea 9", description: "Description for Idea 3" },
-    { name: "Idea 10", description: "Description for Idea 3" },
-    { name: "Idea 11", description: "Description for Idea 3" }
-    // Add more ideas as needed
+    { name: "Idea 4", description: "Description for Idea 4" },
+    { name: "Idea 5", description: "Description for Idea 5" },
+    { name: "Idea 6", description: "Description for Idea 6" },
+    { name: "Idea 7", description: "Description for Idea 7" },
+    { name: "Idea 8", description: "Description for Idea 8" },
+    { name: "Idea 9", description: "Description for Idea 9" },
+    { name: "Idea 10", description: "Description for Idea 10" },
+    { name: "Idea 11", description: "Description for Idea 11" }
 ];
 
 let currentIdeaIndex = -1;
 
+let _ideaName, _ideaDescription;
+
 function getRandomIdea() {
-    return ideas[Math.floor(Math.random() * ideas.length)];
+    var idea = exampleIdeas[Math.floor(Math.random() * exampleIdeas.length)];
+    _ideaName = idea.name;
+    _ideaDescription = idea.description;
+    return idea;
 }
 
 function displayIdea(idea) {
     document.getElementById("ideaName").innerText = idea.name;
     document.getElementById("ideaDescription").innerText = idea.description;
+}
+
+function storeIdeasLocal(ideaName, ideaDescription) {
+    console.log("Idea Name:" + ideaName);
+    console.log("Idea Description: " + ideaDescription);
+    localStorage.setItem('_ideaName', ideaName);
+    localStorage.setItem('_ideaDescription', ideaDescription);
 }
 
 function swipeCard() {
@@ -31,22 +63,12 @@ function swipeCard() {
 }
 
 function invest() {
-    const currentIdea = ideas[currentIdeaIndex];
-    if (currentIdea) {
-        console.log(`Invested ${currentIdea.name}!`);
-    } else {
-        console.log("No idea to invest.");
-    }
+    storeIdeasLocal(_ideaName, _ideaDescription);
     window.location.href = "invest";
 }
 
 function join() {
-    const currentIdea = ideas[currentIdeaIndex];
-    if (currentIdea) {
-        console.log(`Joined ${currentIdea.name}!`);
-    } else {
-        console.log("No idea to join.");
-    }
+    storeIdeasLocal(_ideaName, _ideaDescription);
     window.location.href = "join";
 }
 
