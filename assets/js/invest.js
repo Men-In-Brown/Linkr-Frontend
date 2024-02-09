@@ -1,21 +1,21 @@
-let _ideaName, _ideaDescription;
+let _companyName, _companyMission;
 
 window.onload = function() {
-    _ideaName = localStorage.getItem("_ideaName");
-    _ideaDescription = localStorage.getItem("_ideaDescription");
-    document.getElementById("ideaName").innerHTML = "Idea: " + _ideaName;
-    document.getElementById("ideaDescription").innerHTML = "Description: " + _ideaDescription;
-    if (_ideaDescription === null || _ideaName === null) {
-        console.log("ERROR: Idea name or description not found in localStorage");
+    _companyName = localStorage.getItem("_companyName");
+    _companyMission = localStorage.getItem("_companyMission");
+    document.getElementById("companyName").innerHTML = "Company: " + _companyName;
+    document.getElementById("companyMission").innerHTML = "Mission: " + _companyMission;
+    if (_companyMission === null || _companyName === null) {
+        console.log("ERROR: Company name or mission not found in localStorage");
     }
 }
 
 function submitForm() {
     // Fetch values from the form
-    document.getElementById("ideaName").innerHTML = "Idea: " + _ideaName;
-    document.getElementById("ideaDescription").innerHTML = "Description: " + _ideaDescription;
-    console.log("_ideaName:", _ideaName);
-    console.log("_ideaDescription:", _ideaDescription);
+    document.getElementById("companyName").innerHTML = "Company: " + _companyName;
+    document.getElementById("companyMission").innerHTML = "Mission: " + _companyMission;
+    console.log("_companyName:", _companyName);
+    console.log("_companyMission:", _companyMission);
 
     // Validate the checkbox
     var understandCheckbox = document.getElementById("understandCheckbox").checked;

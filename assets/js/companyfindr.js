@@ -1,21 +1,6 @@
 let companies;
 let currentcompanyIndex = -1;
-let _companyName, _companyDescription;
-/*
-const exampleCompanies = [
-    { name: "company 1", description: "Description for company 1" },
-    { name: "company 2", description: "Description for company 2" },
-    { name: "company 3", description: "Description for company 3" },
-    { name: "company 4", description: "Description for company 4" },
-    { name: "company 5", description: "Description for company 5" },
-    { name: "company 6", description: "Description for company 6" },
-    { name: "company 7", description: "Description for company 7" },
-    { name: "company 8", description: "Description for company 8" },
-    { name: "company 9", description: "Description for company 9" },
-    { name: "company 10", description: "Description for company 10" },
-    { name: "company 11", description: "Description for company 11" }
-];
-*/
+let _companyName, _companyMission;
 
 window.onload = function() {
     const apiUrl = "http://localhost:8085/api/companies";
@@ -29,7 +14,7 @@ window.onload = function() {
       })
       .then(data => {
         companies = data;
-        console.log("companies:", companies);
+        console.log("Companies data fetched successfully:", companies);
 
         // Now that you have the data, you can call functions dependent on 'companies'
         swipeCard();  // or any other function you want to call after getting the data
@@ -43,33 +28,34 @@ function getRandomCompany() {
     if (companies && companies.length > 0) {
         const randomIndex = Math.floor(Math.random() * companies.length);
         const randomCompany = companies[randomIndex];
-        const { name, description } = randomCompany;
+        const { name, mission } = randomCompany;
 
         _companyName = name;
-        _companyDescription = description;
+        _companyMission = mission;
 
-        return { name, description };
+        return { name, mission };
     } else {
         console.log("Companies data is not available yet.");
-        return { name: "No company", description: "No description" };
+        return { name: "No company", mission: "No mission" };
     }
 }
 
 function displayCompany(company) {
+    console.log("Displaying company:", company);
     document.getElementById("companyName").innerText = company.name;
-    document.getElementById("companyDescription").innerText = company.description;
+    document.getElementById("companyMission").innerText = company.mission;
 }
 
-function storecompaniesLocal(companyName, companyDescription) {
-    console.log("Company Name:" + companyName);
-    console.log("Company Description: " + companyDescription);
+function storecompaniesLocal(companyName, companyMission) {
+    console.log("Storing company locally - Name:", companyName, "Mission:", companyMission);
     localStorage.setItem('_companyName', companyName);
-    localStorage.setItem('_companyDescription', companyDescription);
+    localStorage.setItem('_companyMission', companyMission);
 }
 
 function swipeCard() {
     if (companies && companies.length > 0) {
         const company = getRandomCompany();
+        console.log("Swiping card. Current company:", company);
         displayCompany(company);
     } else {
         console.log("Companies data is not available yet.");
@@ -77,22 +63,27 @@ function swipeCard() {
 }
 
 function invest() {
-    storecompaniesLocal(_companyName, _companyDescription);
+    console.log("Investing in company:", _companyName);
+    storecompaniesLocal(_companyName, _companyMission);
     window.location.href = "invest";
 }
 
 function join() {
-    storecompaniesLocal(_companyName, _companyDescription);
+    console.log("Joining company:", _companyName);
+    storecompaniesLocal(_companyName, _companyMission);
     window.location.href = "join";
 }
 
 // Event listeners for arrow key presses
 document.addEventListener("keydown", function(event) {
     if (event.key === "ArrowUp") {
+        console.log("ArrowUp key pressed.");
         swipeCard();
     } else if (event.key === "ArrowLeft") {
+        console.log("ArrowLeft key pressed.");
         invest();
     } else if (event.key === "ArrowRight") {
+        console.log("ArrowRight key pressed.");
         join();
     }
 });

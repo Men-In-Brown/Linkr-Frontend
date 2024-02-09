@@ -75,3 +75,17 @@ button {
 .top-swipe-area {
     height: 30%; /* Adjust the height based on your preference */
 }
+
+.submit-btn {
+    background-color: black;
+    color: white;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.submit-btn:hover {
+    background-color: black;
+}

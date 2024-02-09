@@ -12,5 +12,5 @@ layout: page
     <br>
     <a href="{{ site.baseurl }}/AA_login.html" class="btn">Log In</a>
     <br><br>
-    <a href="{{ site.baseurl }}/AB_ideafindr.html" class="btn">Idea Findr</a>   
+    <a href="{{ site.baseurl }}/AB_companyfindr.html" class="btn">Idea Findr</a>   
 </div>
