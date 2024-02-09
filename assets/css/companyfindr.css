@@ -8,7 +8,7 @@ body {
     height: 100vh;
 }
 
-#ideaCard {
+#companyCard {
     width: 300px;
     padding: 20px;
     border-radius: 15px;
@@ -43,7 +43,7 @@ button {
     color: #fff;
 }
 
-#ideaName {
+#companyName {
     margin-top: 10px;
 }
 
