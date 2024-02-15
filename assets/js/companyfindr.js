@@ -10,10 +10,10 @@ window.onload = function() {
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
-        return response.json();
+        return response.json(); // get data
       })
       .then(data => {
-        companies = data;
+        companies = data; // set data to a constant companies that will be added
         console.log("Companies data fetched successfully:", companies);
 
         // Now that you have the data, you can call functions dependent on 'companies'
@@ -40,7 +40,7 @@ function getRandomCompany() {
     }
 }
 
-function displayCompany(company) {
+function displayCompany(company) { // displays company
     console.log("Displaying company:", company);
     document.getElementById("companyName").innerText = company.name;
     document.getElementById("companyMission").innerText = company.mission;
